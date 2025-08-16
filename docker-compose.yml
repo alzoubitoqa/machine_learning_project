@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  insurance-api:
+    build: .
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./predictions.db:/app/predictions.db
+      - ./model.joblib:/app/model.joblib
+      - ./label_encoders.joblib:/app/label_encoders.joblib
+    environment:
+      - PORT=8002
+      - MODEL_PATH=/app/model.joblib
+      - LABEL_ENCODERS_PATH=/app/label_encoders.joblib
